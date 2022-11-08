@@ -44,6 +44,7 @@ class Parter(discord.ui.View):
         if len(users) == 0:
             await interaction.channel.send(content="対象者がいません",delete_after=2)
         else:
+            random.shuffle(users)
             text = ""
             for i,user in enumerate(users):
                 text += str(i+1) + " :" + user + "\n"
