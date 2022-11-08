@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pokemon-bot"
+version = "0.1.0"
+description = ""
+authors = ["taisei12232 <taisei12232@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pokemon_bot"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+simpleaudio = "^1.0.4"
+"discord.py" = {version = "2.0.1", extras = ["voice"]}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
