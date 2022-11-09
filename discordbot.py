@@ -39,7 +39,7 @@ async def random(interaction: discord.Interaction):
 async def randdice(interaction: discord.Interaction,roll:str = "1D6"):
     if interaction.user.bot:
         return
-    dice = re.fullmatch("\d+(d|D)\d",roll)
+    dice = re.fullmatch("\d+(d|D)\d+",roll)
     if(dice == None):
         await interaction.response.send_message("?D?の形式で入力してください")
         return
