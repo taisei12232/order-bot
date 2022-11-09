@@ -46,7 +46,7 @@ async def randdice(interaction: discord.Interaction,roll:str = "1D6"):
     else:
         digits = re.findall("\d+",roll)
         result = 0
-        if int(digits[0]) > 100 and int(digits[1] < 1000):
+        if int(digits[0]) <= 100 and int(digits[1]) <= 1000:
             for i in range(int(digits[0])):
                 result += rand.randrange(int(digits[1])) + 1
         else:
