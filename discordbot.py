@@ -36,7 +36,7 @@ async def random(interaction: discord.Interaction):
     await interaction.response.send_message(rand.randrange(100)+1)
 
 @tree.command(description="任意の数ダイスを振ります。?D?の形でオプションを入力してください")
-async def randdice(interaction: discord.Interaction,roll:str):
+async def randdice(interaction: discord.Interaction,roll:str = "1D6"):
     if interaction.user.bot:
         return
     await interaction.response.send_message(rand.randrange(6)+1)
