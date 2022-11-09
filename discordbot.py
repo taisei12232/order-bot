@@ -50,7 +50,7 @@ async def randdice(interaction: discord.Interaction,roll:str = "1D6"):
             for i in range(int(digits[0])):
                 result += rand.randrange(int(digits[1])) + 1
         else:
-            await interaction.response.send_message("ダイスの数は100以下、出目は1000以下に設定してください。")
+            await interaction.response.send_message("ダイスの数は100以下、出目は1000以下の自然数に設定してください。")
             return
         await interaction.response.send_message(result)
 
