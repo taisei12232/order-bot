@@ -2,7 +2,7 @@ import discord
 from discord import app_commands, Object
 import re
 import os
-import random
+import random as rand
 import asyncio
 from typing import List
 import logging
@@ -29,6 +29,20 @@ async def on_app_command_completion(interaction: discord.Interaction,command):
         return
     print(command.name + "が" + interaction.guild.name + "(" + str(interaction.guild.id) + ")で" + interaction.user.name + "(" + str(interaction.user.id) + ")により実行")
 
+@tree.command(description="1〜100のランダムな整数を1つ出します")
+async def random(interaction: discord.Interaction):
+    if interaction.user.bot:
+        return
+    await interaction.response.send_message(rand.randrange(100)+1)
+
+@tree.command(description="任意の数ダイスを振ります。?D?の形でオプションを入力してください")
+@app_commands.required(False)
+async def randdice(interaction: discord.Interaction,roll:str):
+    if interaction.user.bot:
+        return
+    await interaction.response.send_message(rand.randrange(6)+1)
+
+
 class Parter(discord.ui.View):
     @discord.ui.button(label='参加', style=discord.ButtonStyle.green)
     async def callbacksubmit(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -44,7 +58,7 @@ class Parter(discord.ui.View):
         if len(users) == 0:
             await interaction.channel.send(content="対象者がいません",delete_after=2)
         else:
-            random.shuffle(users)
+            rand.shuffle(users)
             text = ""
             for i,user in enumerate(users):
                 text += str(i+1) + " :" + user + "\n"
@@ -53,8 +67,8 @@ class Parter(discord.ui.View):
             await interaction.response.edit_message(view=self)
             await interaction.channel.send(content=text)
 
-@tree.command(description="順番を決めます")
-async def order(interaction: discord.Interaction):
+@tree.command(description="ランダムに順番を決めます")
+async def randorder(interaction: discord.Interaction):
     if interaction.user.bot:
         return
     await interaction.response.send_message(content="対象者:",view=Parter())
