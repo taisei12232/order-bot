@@ -39,7 +39,16 @@ async def random(interaction: discord.Interaction):
 async def randdice(interaction: discord.Interaction,roll:str = "1D6"):
     if interaction.user.bot:
         return
-    await interaction.response.send_message(rand.randrange(6)+1)
+    dice = re.fullmatch("\d+(d|D)\d",roll)
+    if(dice == None):
+        await interaction.response.send_message("?D?の形式で入力してください")
+    else:
+        digits = re.findall("\d+",roll)
+        if int(digits[0]) > 100 and int(digits[1] < 1000):
+            result = 0
+            for i in range(int(digits[0])):
+                result += rand.randrange(int(digits[1])) + 1
+    await interaction.response.send_message(result)
 
 
 class Parter(discord.ui.View):
