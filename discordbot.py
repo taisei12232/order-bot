@@ -91,4 +91,13 @@ async def randorder(interaction: discord.Interaction):
         return
     await interaction.response.send_message(content="対象者:",view=Parter())
 
+@tree.command(description="ランダムに順番を決めます")
+async def help(interaction: discord.Interaction):
+    if interaction.user.bot:
+        return
+    await interaction.response.send_message(content="""`/random`:1~100のランダムな数字を一つ出力します
+    `/randcoin`:表か裏のどちらかをランダムで出力します
+    `/randdice`:ダイスロールをします サイコロの数や目は?D?の形式で指定することが出来ます 指定しない場合1D6となります
+    `/randorder`:ランダムに順番を決めます 実行するとボタンが表示され，ボタンを押した人が抽選の対象となります""")
+
 client.run(os.environ["TOKEN"],log_level=logging.ERROR)
