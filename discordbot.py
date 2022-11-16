@@ -58,7 +58,7 @@ async def randdice(interaction: discord.Interaction,roll:str = "1D6"):
         else:
             await interaction.response.send_message("ダイスの数は100以下、出目は1000以下の自然数に設定してください。")
             return
-        await interaction.response.send_message(roll + ": " + result)
+        await interaction.response.send_message(roll + ": " + str(result))
 
 
 class Parter(discord.ui.View):
